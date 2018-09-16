@@ -16,6 +16,7 @@
 * Sound
 * WIFI
 * etc
+
 ## 不工作的
 * Camera
 * Modem
@@ -26,8 +27,6 @@
 ## 工作不正常的
 * ALSPS
 * ACCELEROMETER
-* POWER BUTTON
-* VOLUME ROCKER
 * etc
 * Lcm(博一)
 

@@ -7,4 +7,4 @@ export ARCH=arm64 ARCH_MTK_PLATFORM=mt6735 #指定CPU和架构
 export TARGET=out #输出目录
 if ! [ -d $TARGET ];then mkdir $TARGET;fi
 if ! [ -f $TARGET/.config ];then make O=$TARGET ARCH=$ARCH titan_defconfig;fi
-make O=$TARGET ARCH=$ARCH $1 $2
+make O=$TARGET ARCH=$ARCH $*

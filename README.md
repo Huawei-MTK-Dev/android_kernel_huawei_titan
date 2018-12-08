@@ -16,10 +16,10 @@
 * Sound
 * WIFI
 * etc
+* Modem
 
 ## 不工作的
 * Camera
-* Modem
 * etc
 * Lcm（天马）
 * TouchScreen（郭泰）

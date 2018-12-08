@@ -65,8 +65,8 @@ typedef enum {
 
 // Image string and header
 // image name/path
-#define MOEDM_IMAGE_NAME                "modem.img"
-#define DSP_IMAGE_NAME                  "DSP_ROM"
+#define MOEDM_IMAGE_NAME                "modem_1_lwg_1.img"
+#define DSP_IMAGE_NAME                  "dsp_1_lwg_1.bin"
 #define CONFIG_MODEM_FIRMWARE_PATH      "/etc/firmware/"
 #define CONFIG_MODEM_FIRMWARE_CIP_PATH  "/custom/etc/firmware/"
 #define IMG_ERR_STR_LEN                 64

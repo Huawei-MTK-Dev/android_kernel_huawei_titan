@@ -10,7 +10,7 @@
 #include "../camera/kd_camera_hw.h"
 
 #define LENS_I2C_BUSNUM 0
-static struct i2c_board_info __initdata kd_lens_dev={ I2C_BOARD_INFO("DW9761BAF", 0x1b)};
+static struct i2c_board_info __initdata kd_lens_dev={ I2C_BOARD_INFO("DW9761BAF", 0x18)};
 
 
 #define DW9761BAF_DRVNAME "DW9761BAF"

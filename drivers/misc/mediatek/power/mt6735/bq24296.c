@@ -44,14 +44,12 @@
 #define bq24296_SLAVE_ADDR_WRITE   0xD6
 #define bq24296_SLAVE_ADDR_READ    0xD7
 
-#ifdef I2C_SWITHING_CHARGER_CHANNEL
-#define bq24296_BUSNUM I2C_SWITHING_CHARGER_CHANNEL
-#else
-#define bq24296_BUSNUM 0
-#endif
+static struct i2c_board_info __initdata kd_bq24296_dev={ I2C_BOARD_INFO("bq24296", 0x6b)};
+
+#define bq24296_BUSNUM 3
 
 static struct i2c_client *new_client = NULL;
-static const struct i2c_device_id bq24296_i2c_id[] = {{"bq24296",0},{}};   
+static const struct i2c_device_id bq24296_i2c_id[] = {{"bq24296",0},{}};
 kal_bool chargin_hw_init_done = KAL_FALSE;
 static int bq24296_driver_probe(struct i2c_client *client, const struct i2c_device_id *id);
 
@@ -713,6 +711,8 @@ static int __init bq24296_subsys_init(void)
     int ret=0;
     
     pr_notice("[bq24296_init] init start. ch=%d\n", bq24296_BUSNUM);
+
+    i2c_register_board_info(bq24296_BUSNUM, &kd_bq24296_dev, 1);
 
     if(i2c_add_driver(&bq24296_driver)!=0)
     {

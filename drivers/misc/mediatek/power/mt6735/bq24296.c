@@ -41,10 +41,9 @@
   *   [I2C Slave Setting] 
   *
   *********************************************************/
-#define bq24296_SLAVE_ADDR_WRITE   0xD6
-#define bq24296_SLAVE_ADDR_READ    0xD7
+#define bq24296_I2C_ADDR   0x6b
 
-static struct i2c_board_info __initdata kd_bq24296_dev={ I2C_BOARD_INFO("bq24296", 0x6b)};
+static struct i2c_board_info __initdata kd_bq24296_dev={ I2C_BOARD_INFO("bq24296", bq24296_I2C_ADDR)};
 
 #define bq24296_BUSNUM 3
 

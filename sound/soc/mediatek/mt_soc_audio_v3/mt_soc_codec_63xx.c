@@ -1791,64 +1791,38 @@ static void Ext_Speaker_Amp_Change(bool enable)
 {
 #define SPK_WARM_UP_TIME        (25) //unit is ms
 #ifndef CONFIG_FPGA_EARLY_PORTING
+//    #error "kek"
     int ret;
     ret = GetGPIO_Info(5, &pin_extspkamp, &pin_mode_extspkamp);
-    if (ret < 0)
-    {
-        printk("Ext_Speaker_Amp_Change GetGPIO_Info FAIL!!! \n");
-        return;
-    }
+//    if (ret < 0)
+//        printk("Ext_Speaker_Amp_Change GetGPIO_Info FAIL!!! \n");
 
     if (enable)
     {
         printk("Ext_Speaker_Amp_Change ON+ \n");
-#ifndef CONFIG_MTK_SPEAKER
-        ret = GetGPIO_Info(10, &pin_extspkamp_2, &pin_mode_extspkamp_2);
-        printk("Ext_Speaker_Amp_Change ON set GPIO \n");
-        mt_set_gpio_mode(pin_extspkamp, GPIO_MODE_00); //GPIO117: DPI_D3, mode 0
-        mt_set_gpio_pull_enable(pin_extspkamp, GPIO_PULL_ENABLE);
-        mt_set_gpio_dir(pin_extspkamp, GPIO_DIR_OUT); // output
-        mt_set_gpio_out(pin_extspkamp, GPIO_OUT_ZERO); // low disable
-        if (pin_extspkamp_2 != NULL_PIN_DEFINITION)
-        {
-            mt_set_gpio_mode(pin_extspkamp_2, GPIO_MODE_00); //GPIO117: DPI_D3, mode 0
-            mt_set_gpio_pull_enable(pin_extspkamp_2, GPIO_PULL_ENABLE);
-            mt_set_gpio_dir(pin_extspkamp_2, GPIO_DIR_OUT); // output
-            mt_set_gpio_out(pin_extspkamp_2, GPIO_OUT_ZERO); // low disable
-        }            
-        
-        udelay(1000);
-        mt_set_gpio_dir(pin_extspkamp, GPIO_DIR_OUT); // output
-        if (pin_extspkamp_2 != NULL_PIN_DEFINITION)
-            mt_set_gpio_dir(pin_extspkamp_2, GPIO_DIR_OUT); // output
+        printk("SEX Ext_Speaker_Amp_Change ON set GPIO \n");
+        mt_set_gpio_mode(GPIO_EXT_SPKAMP_EN_PIN, GPIO_MODE_00); //GPIO117: DPI_D3, mode 0
+        mt_set_gpio_dir(GPIO_EXT_SPKAMP_EN_PIN, GPIO_DIR_OUT); // output
 
-#ifdef AW8736_MODE_CTRL
-        AW8736_MODE3;
-#else
-        mt_set_gpio_out(pin_extspkamp, GPIO_OUT_ONE); // high enable
-#endif
-        if (pin_extspkamp_2 != NULL_PIN_DEFINITION)
-            mt_set_gpio_out(pin_extspkamp_2, GPIO_OUT_ONE); // high enable
+        mt_set_gpio_out(GPIO_EXT_SPKAMP_EN_PIN,GPIO_OUT_ONE);
+        udelay(GAP);
+        mt_set_gpio_out(GPIO_EXT_SPKAMP_EN_PIN,GPIO_OUT_ZERO);
+        udelay(GAP);
+        mt_set_gpio_out(GPIO_EXT_SPKAMP_EN_PIN,GPIO_OUT_ONE);
+        udelay(GAP);
+        mt_set_gpio_out(GPIO_EXT_SPKAMP_EN_PIN,GPIO_OUT_ZERO);
+        udelay(GAP);
+        mt_set_gpio_out(GPIO_EXT_SPKAMP_EN_PIN,GPIO_OUT_ONE);
 
         msleep(SPK_WARM_UP_TIME);
-#endif
         printk("Ext_Speaker_Amp_Change ON- \n");
     }
     else
     {
         printk("Ext_Speaker_Amp_Change OFF+ \n");
-#ifndef CONFIG_MTK_SPEAKER
-        ret = GetGPIO_Info(10, &pin_extspkamp_2, &pin_mode_extspkamp_2);
-        //mt_set_gpio_mode(pin_extspkamp, GPIO_MODE_00); //GPIO117: DPI_D3, mode 0
-        mt_set_gpio_dir(pin_extspkamp, GPIO_DIR_OUT); // output
-        mt_set_gpio_out(pin_extspkamp, GPIO_OUT_ZERO); // low disbale
-        if (pin_extspkamp_2 != NULL_PIN_DEFINITION)
-        {
-            mt_set_gpio_dir(pin_extspkamp_2, GPIO_DIR_OUT); // output
-            mt_set_gpio_out(pin_extspkamp_2, GPIO_OUT_ZERO); // low disbale
-        }
-        udelay(500);
-#endif
+        mt_set_gpio_mode(GPIO_EXT_SPKAMP_EN_PIN, GPIO_MODE_00); //GPIO117: DPI_D3, mode 0
+        mt_set_gpio_dir(GPIO_EXT_SPKAMP_EN_PIN, GPIO_DIR_OUT); // output
+        mt_set_gpio_out(GPIO_EXT_SPKAMP_EN_PIN, GPIO_OUT_ZERO); // low disbale
         printk("Ext_Speaker_Amp_Change OFF- \n");
     }
 #endif
@@ -1856,6 +1830,7 @@ static void Ext_Speaker_Amp_Change(bool enable)
 
 #else
 #ifndef CONFIG_MTK_SPEAKER
+#define AW8736_MODE_CTRL
 #ifdef  AW8736_MODE_CTRL
 /* 0.75us<TL<10us; 0.75us<TH<10us */
 #define GAP (2) //unit: us

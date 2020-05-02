@@ -3,12 +3,12 @@
 用s4704的源码填坑，目前s4704已经将信利屏幕和codegen.dws等一些驱动的坑填了，目前我这边加了博一屏幕，剩下的坑找到ALPS源码会填的。
 ## CPU 一些配置
 * CPU：MT6735
-* Kernel版本：3.10.65
+* Kernel版本：3.10.72
 * 架构：arm64.
 
 设备：
-* Huawei Honor 4c Pro/Huawei Y6 Pro, TIT-L01 (russian/european version)
-* Huawei Enjoy 5/Huawei Y6 Pro, TIT-AL00 (chinese/belarusian version)
+* Huawei Honor 4c Pro/Huawei Y6 Pro, TIT-L01 (Russian/European Version)
+* Huawei Enjoy 5/Huawei Y6 Pro, TIT-AL00 (Chinese/Belarusian Version)
 
 ## 工作的（来自s4704）
 * Lcm（限信利屏幕）
@@ -20,14 +20,11 @@
 
 ## 不工作的
 * Camera
-* etc
 * Lcm（天马）
-* TouchScreen（郭泰）
+* TouchScreen（郭泰,Synaptics）
 
 ## 工作不正常的
 * ALSPS
-* ACCELEROMETER
-* etc
 * Lcm(博一)
 
 ## 题外话
